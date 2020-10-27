@@ -6,4 +6,5 @@ class Mentor < ApplicationRecord
 
   has_many :mentor_tags
   has_many :tags, through: :mentor_tags
+  scope :confirmed, -> { where.not(confirmation_sent_at: nil) }
 end

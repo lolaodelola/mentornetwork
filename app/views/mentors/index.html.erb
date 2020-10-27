@@ -1,0 +1,7 @@
+<% @mentors.each do |mentor| %>
+  <h3><%= mentor.username %></h3>
+  <% mentor.tags.each do |tag| %>
+    <p><%= tag.name %></p>
+  <% end %>
+  <%= link_to 'Book', mentor.booking_url %>
+<% end %>
