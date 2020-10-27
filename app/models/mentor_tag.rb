@@ -1,0 +1,2 @@
+class MentorTag < ApplicationRecord
+end

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_120247) do
+ActiveRecord::Schema.define(version: 2020_10_27_132448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mentor_tags", force: :cascade do |t|
+    t.integer "mentor_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "mentors", force: :cascade do |t|
     t.string "email", default: "", null: false
