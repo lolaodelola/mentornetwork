@@ -1,0 +1,5 @@
+<h1><%= @mentor.username %></h1>
+<% @mentor.tags.each do |tag| %>
+  <p><%= tag.name %></p>
+<% end %>
+<%= link_to "Book a time", @mentor.booking_url %>

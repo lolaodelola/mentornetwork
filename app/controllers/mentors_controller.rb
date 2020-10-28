@@ -13,17 +13,19 @@ class MentorsController < ApplicationController
   end
 
   def show
-    # binding.pry
-    find_by_username
+    @mentor = find_by_username
   end
-  #
-  # def edit
-  #   find_by_username
-  # end
+
+  def edit
+    @mentor = find_by_username
+  end
+
+  # Update
+  # Delete
 
   private
   def find_by_username
-    @mentor = Mentor.find_by_username(params[:username])
+    Mentor.find_by_username(params[:username])
   end
 end
 
