@@ -1,8 +1,3 @@
-<%= form_tag(results_mentors_path, method: 'get') do %>
-  <%= collection_check_boxes :tags, :ids, Tag.all, :id, :name %>
-  <%= submit_tag("Filter") %>
-<% end %>
-
 <% @mentors.each do |mentor| %>
   <h3><%= mentor.username %></h3>
   <% mentor.tags.each do |tag| %>
