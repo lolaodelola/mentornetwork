@@ -3,3 +3,6 @@
   <p><%= tag.name %></p>
 <% end %>
 <%= link_to "Book a time", @mentor.booking_url %>
+<% if mentor_signed_in? %>
+  <%= link_to "Edit", edit_mentor_path(@mentor.username) %>
+<% end %>
