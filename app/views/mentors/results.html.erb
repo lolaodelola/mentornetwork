@@ -1,7 +1,12 @@
 <% @mentors.each do |mentor| %>
-  <h3><%= mentor.username %></h3>
-  <% mentor.tags.each do |tag| %>
-    <p><%= tag.name %></p>
-  <% end %>
-  <%= link_to 'Book', mentor.booking_url %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= mentor.username %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <% mentor.tags.each do |tag| %>
+        <p class="card-text"><%= tag.name %></p>
+      <% end %>
+      <%= link_to 'Book', mentor.booking_url, class: "card-link" %>
+    </div>
+  </div>
 <% end %>
