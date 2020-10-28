@@ -28,7 +28,10 @@ class MentorsController < Devise::RegistrationsController
     mentor.update!(mentor_params)
   end
 
-  # Delete
+  def delete
+    mentor = find_by_username
+    mentor.delete
+  end
 
   private
   def find_by_username
