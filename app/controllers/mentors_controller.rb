@@ -40,10 +40,12 @@ class MentorsController < Devise::RegistrationsController
   end
 
   def remove_blank_passwords
-    if params.dig(:mentor, :password).blank? && params.dig(:mentor, :password_confirmation).blank?
-      params[:mentor].delete(:password)
-      params[:mentor].delete(:password_confirmation)
-    end
+    no_passwords = params.dig(:mentor, :password).blank? && params.dig(:mentor, :password_confirmation).blank?
+    return unless no_passwords
+
+    params[:mentor].delete(:password)
+    params[:mentor].delete(:password_confirmation)
   end
+
 end
 
