@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_scope :mentor do
     root 'mentors#root'
-    resources :mentors, param: :username do
+    resources :mentors, param: :uuid do
       collection do
         get '/results', to: 'mentors#results', as: 'results'
       end

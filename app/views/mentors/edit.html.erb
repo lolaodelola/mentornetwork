@@ -1,6 +1,6 @@
 <div class="col-md-6 offset-md-3">
   <h2 class="display-3 pb-2 title">Edit your profile, <%= @mentor.username %></h2>
-  <%= form_for(@mentor, as: resource_name, url: mentor_path(@mentor.username), html: { method: :put }) do |f| %>
+  <%= form_for(@mentor, as: resource_name, url: mentor_path(@mentor.uuid), html: { method: :put }) do |f| %>
   <%= render "mentors/shared/error_messages", resource: resource %>
     <div class="form-group">
       <%= f.label :username %><br />

@@ -4,7 +4,7 @@
   <p><%= tag.name %></p>
 <% end %>
 <% if current_mentor == @mentor %>
-  <%= link_to "Edit", edit_mentor_path(@mentor.username) %>
+  <%= link_to "Edit", edit_mentor_path(@mentor.uuid) %>
 <% else %>
   <%= link_to "Book a time", @mentor.booking_url %>
 <% end %>

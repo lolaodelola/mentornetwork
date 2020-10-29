@@ -14,18 +14,18 @@ class MentorsController < Devise::RegistrationsController
   end
 
   def show
-    @mentor = find_by_username
+    @mentor = find_by_uuid
   end
 
   def edit
     conditional_action do
-      @mentor = find_by_username
+      @mentor = find_by_uuid
     end
   end
 
   def update
     conditional_action do
-      mentor = find_by_username
+      mentor = find_by_uuid
       remove_blank_passwords
       mentor.update!(mentor_params)
       redirect_to mentor_path(mentor.username)
@@ -34,7 +34,7 @@ class MentorsController < Devise::RegistrationsController
 
   def delete
     conditional_action do
-      mentor = find_by_username
+      mentor = find_by_uuid
       mentor.delete
     end
   end
@@ -42,8 +42,8 @@ class MentorsController < Devise::RegistrationsController
   def root; end
 
   private
-  def find_by_username
-    Mentor.find_by_username(params[:username])
+  def find_by_uuid
+    Mentor.find_by_uuid(params[:uuid])
   end
 
   def mentor_params
@@ -59,7 +59,7 @@ class MentorsController < Devise::RegistrationsController
   end
 
   def mentor_verification
-    mentor_signed_in? && (current_mentor == find_by_username)
+    mentor_signed_in? && (current_mentor == find_by_uuid)
   end
 
   def conditional_action
