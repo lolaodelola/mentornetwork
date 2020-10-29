@@ -17,6 +17,28 @@
   </head>
 
   <body class="container">
+    <nav class="mb-5">
+      <ul class="nav justify-content-end">
+          <% if mentor_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Sign Out', destroy_mentor_session_path, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Become a Mentor', new_mentor_registration_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign In', new_mentor_session_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+        <li class="nav-item">
+          <%= link_to 'Find a Mentor', mentors_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Donate to Organisers</a>
+        </li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>

@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+body {
+    background-color: black;
+    color: #F7F7F7;
+}
+
+.title {
+    font-family: Serif;
+    font-weight: bold;
+}
+
+.form-title {
+    font-size: 1.5rem;
+}
+
+hr {
+    border-width: 0.75rem;
+}
