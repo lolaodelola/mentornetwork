@@ -1,7 +1,8 @@
 class MentorsController < Devise::RegistrationsController
 
   def index
-    @mentors = Mentor.confirmed.all
+    # @mentors = Mentor.confirmed.all
+    @mentors = Mentor.all
   end
 
   def results
@@ -33,13 +34,15 @@ class MentorsController < Devise::RegistrationsController
     mentor.delete
   end
 
+  def root;end
+
   private
   def find_by_username
     Mentor.find_by_username(params[:username])
   end
 
   def mentor_params
-    params.require(:mentor).permit(:username, :password, :password_confirmation, :email, tag_ids: [])
+    params.require(:mentor).permit(:username, :password, :password_confirmation, :email, :job_role, tag_ids: [])
   end
 
   def remove_blank_passwords
