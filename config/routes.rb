@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/privacy-policy', to: 'static#privacy_policy'
+  get '/privacy-policy', to: 'static#privacy_policy', as: 'privacy_policy'
 end
