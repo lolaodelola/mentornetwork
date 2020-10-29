@@ -70,6 +70,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.6)
     erubi (1.9.0)
     ffi (1.13.1)
     globalid (0.4.2)
@@ -193,6 +194,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   devise
+  dotenv
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
