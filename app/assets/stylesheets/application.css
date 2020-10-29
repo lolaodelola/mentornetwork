@@ -33,3 +33,37 @@ body {
 hr {
     border-width: 0.75rem;
 }
+
+a {
+    color: #F7F7F7;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+a:hover {
+    color: yellowgreen;
+}
+
+nav {
+    background-color: #F7F7F7;
+}
+
+nav a {
+    color: black;
+}
+
+.btn-primary {
+    background-color: #F7F7F7;
+    border-color: #F7F7F7;
+    color: black;
+}
+
+.btn-primary:hover {
+    background-color: yellowgreen;
+    border-color: yellowgreen;
+    color: black;
+}
+
+.a-btn {
+    text-decoration: none;
+}
