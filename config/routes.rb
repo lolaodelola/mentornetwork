@@ -9,4 +9,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/privacy-policy', to: 'static#privacy_policy'
 end
