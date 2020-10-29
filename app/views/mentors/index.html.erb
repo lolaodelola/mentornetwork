@@ -6,9 +6,9 @@
     <%= form_tag(results_mentors_path, method: 'get') do %>
       <div class="form-group row">
         <p class="form-title col-form-label pt-0">Filter by speciality</p>
-        <div class="col-sm-10">
+        <div class="col-md-10">
           <%= collection_check_boxes :tags, :ids, Tag.all, :id, :name do |c| %>
-            <div class="form-checks">
+            <div class="form-checks form-check-inline">
               <div class="form-check-input">
                 <%= c.check_box(class: "check_box") %>
               </div>
@@ -35,11 +35,11 @@
           <div class="card text-white bg-dark border-dark mb-3">
             <div class="card-body">
               <h5 class="card-title"><%= mentor.username %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <% mentor.tags.each do |tag| %>
+              <h6 class="card-subtitle mb-2 text-white-50"><%= mentor.job_role %></h6>
+              <% mentor.tags[0..2].each do |tag| %>
                 <span class="card-text"><%= tag.name %></span>
               <% end %>
-              <%= link_to 'Book', mentor.booking_url, class: "card-link d-block" %>
+              <%= link_to 'Book a session', mentor.booking_url, class: "mt-1 card-link d-block" %>
             </div>
           </div>
         </div>

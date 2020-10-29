@@ -1,8 +1,10 @@
 <h1><%= @mentor.username %></h1>
+<h5><%= @mentor.job_role %></h5>
 <% @mentor.tags.each do |tag| %>
   <p><%= tag.name %></p>
 <% end %>
-<%= link_to "Book a time", @mentor.booking_url %>
-<% if mentor_signed_in? %>
+<% if current_mentor == @mentor %>
   <%= link_to "Edit", edit_mentor_path(@mentor.username) %>
+<% else %>
+  <%= link_to "Book a time", @mentor.booking_url %>
 <% end %>
