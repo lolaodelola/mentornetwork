@@ -1,4 +1,6 @@
 class MentorsController < Devise::RegistrationsController
+  protect_from_forgery prepend: true
+  before_action :authenticate_mentor!, except: %i[results root]
 
   def index
     # @mentors = Mentor.confirmed.all
@@ -7,10 +9,8 @@ class MentorsController < Devise::RegistrationsController
 
   def results
     tags = params[:tags][:ids]
-
-    @mentors = Mentor.joins(:tags).where(tags: {id: tags}).distinct
-
-    redirect_to mentors_path, notice: 'There were no mentors matching your options' if @mentors.empty? || tags.empty?
+    @mentors = Mentor.joins(:tags).where(tags: { id: tags }).distinct
+    redirect_to_index({notice: 'There were no mentors matching your options'}) if @mentors.empty? || tags.empty?
   end
 
   def show
@@ -18,23 +18,28 @@ class MentorsController < Devise::RegistrationsController
   end
 
   def edit
-    @mentor = find_by_username
-    render 'mentors/registrations/edit'
+    conditional_action do
+      @mentor = find_by_username
+    end
   end
 
   def update
-    mentor = find_by_username
-    remove_blank_passwords
-    # binding.pry
-    mentor.update!(mentor_params)
+    conditional_action do
+      mentor = find_by_username
+      remove_blank_passwords
+      mentor.update!(mentor_params)
+      redirect_to mentor_path(mentor.username)
+    end
   end
 
   def delete
-    mentor = find_by_username
-    mentor.delete
+    conditional_action do
+      mentor = find_by_username
+      mentor.delete
+    end
   end
 
-  def root;end
+  def root; end
 
   private
   def find_by_username
@@ -51,6 +56,22 @@ class MentorsController < Devise::RegistrationsController
 
     params[:mentor].delete(:password)
     params[:mentor].delete(:password_confirmation)
+  end
+
+  def mentor_verification
+    mentor_signed_in? && (current_mentor == find_by_username)
+  end
+
+  def conditional_action
+    if mentor_verification
+      yield
+    else
+      redirect_to_index
+    end
+  end
+
+  def redirect_to_index(options = {})
+    redirect_to mentors_path, options
   end
 
 end
