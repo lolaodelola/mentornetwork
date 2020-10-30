@@ -110,7 +110,7 @@ Rails.application.configure do
       address:              'smtp.gmail.com',
       port:                 465,
       domain:               ENV['DOMAIN'],
-      user_name:            ENV['GMAIL_AD'],
+      user_name:            ENV['GMAIL_UN'],
       password:             ENV['GMAIL_PW'],
       authentication:       'plain',
       ssl:                   true,
