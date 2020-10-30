@@ -2,59 +2,59 @@
   <h2 class="display-3 pb-2 title">Edit your profile, <%= @mentor.username %></h2>
   <%= form_for(@mentor, as: resource_name, url: mentor_path(@mentor.uuid), html: { method: :put }) do |f| %>
   <%= render "mentors/shared/error_messages", resource: resource %>
-    <div class="form-group">
-      <%= f.label :username %><br />
-      <%= f.text_field :username, autocomplete: "username", class: 'form-control' %>
-    </div>
+      <div class="form-group">
+        <%= f.label :username %><br />
+        <%= f.text_field :username, autocomplete: "username", class: 'form-control' %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-    </div>
+      <div class="form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      </div>
 
-    <div class="form-group">
-      <%= f.label :job_role %><br />
-      <%= f.text_field :job_role, autocomplete: "job_role", class: 'form-control' %>
-    </div>
+      <div class="form-group">
+        <%= f.label :job_role %><br />
+        <%= f.text_field :job_role, autocomplete: "job_role", class: 'form-control' %>
+      </div>
 
-    <div class="form-group">
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |c| %>
-        <div class="form-checks form-check-inline">
-          <div class="form-check-input">
-            <%= c.check_box(class: "check_box") %>
-          </div>
-          <div class="form-check-label px-1">
-            <%= c.label(class: "check_box")  %>
-          </div>
-        </div>
+      <div class="form-group">
+        <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |c| %>
+            <div class="form-checks form-check-inline">
+              <div class="form-check-input">
+                <%= c.check_box(class: "check_box") %>
+              </div>
+              <div class="form-check-label px-1">
+                <%= c.label(class: "check_box")  %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-  </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div class="form-group">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+      <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+      <div class="actions">
+      <%= f.submit "Update", class: 'btn btn-warning' %>
+    </div>
   <% end %>
 
-    <div class="form-group">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+  <hr class="border-white my-4 ml-0">
+  <h3 class="title mb-3">Delete my account</h3>
 
-    <div class="form-group">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update", class: 'btn btn-primary' %>
-  </div>
-<% end %>
+  <%= button_to "Delete my profile", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
 </div>
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

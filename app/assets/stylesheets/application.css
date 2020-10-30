@@ -14,11 +14,14 @@
  *= require_self
  */
 
-
+html {
+    min-height: 100vh;
+}
 
 body {
     background-color: black;
     color: #F7F7F7;
+
 }
 
 .title {
@@ -66,4 +69,8 @@ nav a {
 
 .a-btn {
     text-decoration: none;
+}
+
+footer {
+    position: absolute;
 }
