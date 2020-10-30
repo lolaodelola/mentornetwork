@@ -47,7 +47,7 @@ class MentorsController < Devise::RegistrationsController
   end
 
   def mentor_params
-    params.require(:mentor).permit(:username, :password, :password_confirmation, :email, :job_role, tag_ids: [])
+    params.require(:mentor).permit(:username, :password, :password_confirmation, :booking_url, :email, :job_role, tag_ids: [])
   end
 
   def remove_blank_passwords
