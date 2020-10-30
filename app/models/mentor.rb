@@ -4,7 +4,7 @@ class Mentor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  validates :username, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
   has_many :mentor_tags
   has_many :tags, through: :mentor_tags
   scope :confirmed, -> { where.not(confirmation_sent_at: nil) }
