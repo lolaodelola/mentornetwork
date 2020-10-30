@@ -16,36 +16,46 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="container">
-    <nav class="mb-5 py-2">
-      <ul class="nav justify-content-end">
-          <% if mentor_signed_in? %>
+  <body>
+      <nav class="mb-5 py-2">
+        <ul class="nav justify-content-end">
+            <% if mentor_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'Sign Out', destroy_mentor_session_path, method: :delete, class: 'nav-link', onclick: 'reloadPage()' %>
+              </li>
             <li class="nav-item">
-              <%= link_to 'Sign Out', destroy_mentor_session_path, class: 'nav-link' %>
+              <%= link_to 'Your Profile', mentor_path(current_mentor.uuid), class: 'nav-link' %>
             </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Become a Mentor', new_mentor_registration_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Sign In', new_mentor_session_path, class: 'nav-link' %>
+              </li>
+            <% end %>
           <li class="nav-item">
-            <%= link_to 'Your Profile', mentor_path(current_mentor.uuid), class: 'nav-link' %>
+            <%= link_to 'Find a Mentor', mentors_path, class: 'nav-link' %>
           </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'Become a Mentor', new_mentor_registration_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Sign In', new_mentor_session_path, class: 'nav-link' %>
-            </li>
-          <% end %>
-        <li class="nav-item">
-          <%= link_to 'Find a Mentor', mentors_path, class: 'nav-link' %>
-        </li>
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="#">Donate</a>-->
-<!--        </li>-->
-      </ul>
-    </nav>
-    <%= yield %>
+  <!--        <li class="nav-item">-->
+  <!--          <a class="nav-link" href="#">Donate</a>-->
+  <!--        </li>-->
+        </ul>
+      </nav>
+      <div class="container body">
+        <%= yield %>
+      </div>
 
-  <footer class="border-top p-3 mt-5">
-    <%= link_to 'Privacy Policy', privacy_policy_path %>
-  </footer>
+
+      <footer class="w-100">
+        <hr class="border-white mb-2 mt-5 ml-0">
+        <%= link_to 'Privacy Policy', privacy_policy_path, class: 'px-3' %>
+      </footer>
+
+      <script>
+        function reloadPage() {
+            location.reload();
+        }
+      </script>
   </body>
 </html>

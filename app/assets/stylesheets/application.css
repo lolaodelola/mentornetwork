@@ -14,7 +14,7 @@
  *= require_self
  */
 
-html {
+html, .body {
     min-height: 100vh;
 }
 
@@ -69,8 +69,4 @@ nav a {
 
 .a-btn {
     text-decoration: none;
-}
-
-footer {
-    position: absolute;
 }
