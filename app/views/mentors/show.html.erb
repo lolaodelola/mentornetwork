@@ -1,4 +1,9 @@
 <h1><%= @mentor.username %></h1>
+
+<% if !@mentor.confirmed? %>
+  <p>Please confirm your email: <%= link_to 'Confirm my account', confirmation_url(@mentor, :confirmation_token => @mentor.confirmation_token) %></p>
+<% end %>
+
 <h5><%= @mentor.job_role %></h5>
 <% @mentor.tags.each do |tag| %>
   <p><%= tag.name %></p>

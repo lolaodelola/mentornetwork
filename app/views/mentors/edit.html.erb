@@ -1,7 +1,10 @@
 <div class="col-md-6 offset-md-3">
   <h2 class="display-3 pb-2 title">Edit your profile, <%= @mentor.username %></h2>
   <%= form_for(@mentor, as: resource_name, url: mentor_path(@mentor.uuid), html: { method: :put }) do |f| %>
-  <%= render "mentors/shared/error_messages", resource: resource %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Please confirm your email to be listed in the directory: <%= resource.unconfirmed_email %></p>
+      <% end %>
+      <%= render "mentors/shared/error_messages", resource: resource %>
       <div class="form-group">
         <%= f.label :username %><br />
         <%= f.text_field :username, autocomplete: "username", class: 'form-control' %>
@@ -29,10 +32,6 @@
             </div>
         <% end %>
       </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
 
       <div class="form-group">
       <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
