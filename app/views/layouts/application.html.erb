@@ -46,6 +46,11 @@
         <%= yield %>
       </div>
 
+<!--      <div class="alert alert-primary col-md-6 offset-md-6">-->
+<!--        <p>By using Lola's Lab services you agree to our <%#= link_to "privacy policy", privacy_policy_path, class: "alert-link" %> We operate globally and use cookies to manage log in sessions.-->
+<!--        </p>-->
+<!--        <span class="alert-link">Close</span>-->
+<!--      </div>-->
 
       <footer class="w-100">
         <hr class="border-white mb-2 mt-5 ml-0">
@@ -56,6 +61,10 @@
         function reloadPage() {
             location.reload();
         }
+
+        // function closeCookieNotice() {
+        //     remove()
+        // }
       </script>
   </body>
 </html>
